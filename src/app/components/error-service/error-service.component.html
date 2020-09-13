@@ -1,0 +1,8 @@
+<div class="row" *ngIf="errorMessage">
+    <div class="col-12">
+        <div class="alert alert-danger animated fadeIn">
+            <h3>Error</h3>
+            <p>{{errorMessage | titlecase}}</p>
+        </div>
+    </div>
+</div>

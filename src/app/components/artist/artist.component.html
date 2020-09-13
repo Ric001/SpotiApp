@@ -1,0 +1,44 @@
+<app-loading *ngIf="!artist"></app-loading>
+<app-error-service *ngIf="failureDetails.error" [errorMessage]="failureDetails.errorMessage"></app-error-service>
+<div class="row" *ngIf="artist">
+    <div class="col-2">
+        <img [src]="artist.images | noimage" class="img-thumbnail img-circle">
+    </div>
+    <div class="col">
+        <h3>{{artist.name}}</h3>
+        <p>
+            <a [href]="artist.external_urls.spotify" target="_blank">Open Artist Page</a>
+        </p>
+    </div>
+    <div class="col-4">
+        <button type="button" class="btn btn-outline-danger" routerLink="/search">Go Back</button>
+    </div>
+</div>
+
+<div class="row m-5" *ngIf="topTracks">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table" style="color: white;">
+                <thead>
+                    <th>Foto</th>
+                    <th>Album</th>
+                    <th>Cancion</th>
+                    <th>Vista Previa</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let topTrack of topTracks">
+                        <td>
+                            <img [src]="topTrack.album.images | noimage" class="img-thumb">
+                        </td>
+                        <td>{{topTrack.album.name}}</td>
+                        <td>{{topTrack.name}}</td>
+                        <td>
+                            <iframe [src]="topTrack.uri | trustedDom" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
+                            </iframe>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

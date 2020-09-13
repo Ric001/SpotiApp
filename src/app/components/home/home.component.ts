@@ -9,7 +9,8 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 export class HomeComponent implements OnInit {
   newRealeses: Array<any> = [];
   loading = true;
-
+  error: boolean;
+  errorMessage: string;
   constructor(private spotifyService: SpotifyService) { }
 
   ngOnInit(): void {
@@ -17,6 +18,11 @@ export class HomeComponent implements OnInit {
       response => {
         this.newRealeses = response;
         this.loading = false;
+      },
+      failureDetails => {
+        this.loading = false;
+        this.error = true;
+        this.errorMessage = failureDetails.error.error.message;
       }
     );
   }

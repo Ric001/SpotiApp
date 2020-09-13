@@ -9,10 +9,10 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 export class SearchComponent implements OnInit {
   artists: Array<any> = [];
   loading: boolean;
+  failureDetails: any = {};
   constructor(private spotifyService: SpotifyService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   search(keyword: string): void {
     this.loading = keyword ? true : false;
@@ -20,6 +20,11 @@ export class SearchComponent implements OnInit {
       response => {
         this.artists = response;
         this.loading = false;
+      },
+      failureDetails => {
+        this.loading = false;
+        this.failureDetails.errorMessage = failureDetails.error.error.message;
+        this.failureDetails.error = true;
       }
     );
   }

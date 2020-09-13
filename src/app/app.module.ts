@@ -11,6 +11,8 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { NoimagePipe } from './pipes/noimage.pipe';
 import { CardsComponent } from './components/cards/cards.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { TrustedDomPipe } from './pipes/trusted-dom.pipe';
+import { ErrorServiceComponent } from './components/error-service/error-service.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { LoadingComponent } from './components/loading/loading.component';
     NavbarComponent,
     NoimagePipe,
     CardsComponent,
-    LoadingComponent
+    LoadingComponent,
+    TrustedDomPipe,
+    ErrorServiceComponent
   ],
   imports: [
     BrowserModule,
